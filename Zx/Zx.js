@@ -1,9 +1,20 @@
 //Introduction to Algorithms
 
-var ItA = (function(){
+var ItA = (function (){
+    function info(){
+        
+        console.log('算法导论：\n    算法导论的用例。');
+        
+    }
     
+    return {
+        info : info
+    }
+})();
+
+ItA.Sort = (function (){
     //插入排序
-    function Sort_Insertion(arr,func){
+    function Insertion(arr,func){
         if(typeof arr !== 'object') return -1;
         var key;
         var j;
@@ -45,11 +56,11 @@ var ItA = (function(){
     }
     
     //归并排序
-    function Sort_Merge(arr,p,r){
+    function Merge(arr,p,r){
         if(p<r){
             var q = Math.floor((p+r)/2);
-            Sort_Merge(arr,p,q);
-            Sort_Merge(arr,q+1,r);
+            Merge(arr,p,q);
+            Merge(arr,q+1,r);
             MergeSub(arr,p,q,r);
         }
         
@@ -59,8 +70,8 @@ var ItA = (function(){
     
     
     return {
-        Sort_Insertion  : Sort_Insertion,
-        Sort_Merge      : Sort_Merge
+        Insertion  : Insertion,
+        Merge      : Merge
     }
     
-})()
+})();
