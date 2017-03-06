@@ -30,7 +30,7 @@ ItA.Sort = (function (){
     }
     
     //归并排序合并
-    //  
+    //Combine
     function MergeSub(arr,p,q,r){
         var L = arr.slice(p,q+1);
         var R = arr.slice(q+1,r+1);
@@ -57,11 +57,11 @@ ItA.Sort = (function (){
     
     //归并排序
     function Merge(arr,p,r){
-        if(p<r){
+        if(p<r){    //Divide
             var q = Math.floor((p+r)/2);
             Merge(arr,p,q);
             Merge(arr,q+1,r);
-            MergeSub(arr,p,q,r);
+            MergeSub(arr,p,q,r);  //Conquer
         }
         
         
@@ -75,3 +75,50 @@ ItA.Sort = (function (){
     }
     
 })();
+
+ItA.FindMaxSubArray = (function(){
+    
+    
+    
+    
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
