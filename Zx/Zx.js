@@ -131,14 +131,39 @@ ItA.FindMaxSubarray = (function(){
         
     }
     
-    var DirectlyCalculating = function(){
+    var DirectlyCalculating = function(arr, low, high){
         
+        var sum_max = Number.MIN_VALUE;
+        var left_index= 0;
+        var right_index= 0;
+        for(var i= low; i<= high; i++){
+            var sum = 0;
+            for(var j= i; j< high+ 1; j++){
+                sum += arr[j];
+            }
+            if(sum > sum_max) {
+                sum_max = sum;
+                left_index = i;
+                right_index = j- 1;
+            }
+        }
         
+        return [left_index, right_index, sum_max];
     } 
+    
+    var DivideConquer = function (arr, low, high){
+        
+        FindMaximumSubarray(arr, low, high);
+        
+    }
     
     return {
         
-        execute     : execute
+        execute     : execute,
+        
+        DivideConquer   : DivideConquer,
+        
+        DirectlyCalculating     : DirectlyCalculating
         
     }
 })();
