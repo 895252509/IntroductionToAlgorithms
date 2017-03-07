@@ -76,11 +76,71 @@ ItA.Sort = (function (){
     
 })();
 
-ItA.FindMaxSubArray = (function(){
+ItA.FindMaxSubarray = (function(){
     
+    //寻找跨越中点的最大子数组的边界
+    var FindMaxCrossingSubarray = function(arr,low,mid,high){
+        var left_sum = Number.MIN_VALUE;
+        var right_sum = Number.MIN_VALUE;
+        var sum = 0;
+        var max_left = 0;
+        var max_right = 0;
+        
+        for(var i= mid; i>= low; i-- ){
+            sum = sum + arr[i];
+            if(sum > left_sum){
+                left_sum = sum;
+                max_left = i;
+            }
+        }
+        sum = 0;
+        for(var i= mid+1; i<= high; i++){
+            sum += arr[i];
+            if(sum> right_sum){
+                right_sum = sum;
+                max_right = i;
+            }
+        }
+        
+        return [max_left, max_right, left_sum + right_sum ];
+    }
     
+    var FindMaximumSubarray = function (arr, low, high){
+        if(high === low)
+            return [low,high,arr[low]];
+        else {
+            var mid = Math.floor((low+high)/2);
+            var L = FindMaximumSubarray(arr,low,mid);
+            var R = FindMaximumSubarray(arr,mid+1,high);
+            var C = FindMaxCrossingSubarray(arr,low,mid,high);   //Cross
+            
+            if( L[2] >= R[2] && L[2] >= C[2]){
+                return L;
+            }else if( R[2] >= L[2] && R[2] >= C[2] ){
+                return R;
+            }else {
+                return C;
+            }
+        }
+        
+    }
     
+    var execute = function(arr, low, high){
+        
+        FindMaximumSubarray(arr, low, high);
+        
+    }
     
+    var DirectlyCalculating = function(){
+        
+        
+    } 
+    
+    return {
+        
+        execute     : execute
+        
+    }
 })();
 
 

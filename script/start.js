@@ -10,5 +10,5 @@ window.onload = function(){
     //ItA.Sort_Insertion(arr);
     ItA.Sort.Merge(arr,0,arr.length-1);
     
-    
+    ItA.FindMaxSubarray.execute(arr, 0, arr.length-1);
 }
