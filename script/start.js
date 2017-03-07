@@ -11,5 +11,24 @@ window.onload = function(){
     
     var a= ItA.FindMaxSubarray.DivideConquer(arr, 0, arr.length-1);
     
-    a= ItA.FindMaxSubarray.DirectlyCalculating(arr,0,arr.length-1);
+    var b= ItA.FindMaxSubarray.DirectlyCalculating(arr,0,arr.length-1);
+    
+    var c = new ItA.Matrix(2,2);
+    c.clear();
+    
+    var d = new ItA.Matrix([
+        [80,30,100],
+        [50,20],
+        [10]
+    ]);
+    
+    var e = new ItA.Matrix([
+        [10,10,10],
+        [20,20,20],
+        [30,30,30]
+    ]);
+    
+    var f = ItA.Matrix.SquareMatrixMultiply(d,e);
+    
+    console.log(f.toString());
 }

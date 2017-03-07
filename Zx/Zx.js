@@ -12,6 +12,75 @@ var ItA = (function (){
     }
 })();
 
+//数据结构
+//矩阵
+ItA.Matrix = function (n,m){
+    if(arguments.length === 2){
+        this.rows = n;
+        this.cols = m;
+        for(var i= 0; i< n; i++){
+            this.push(new Array(m));
+        }
+    }else if(arguments.length === 1){
+        this.rows = 0;
+        this.cols = 0;
+        var args = arguments[0];
+        var max_n = 0;
+        for(var i= 0; i< args.length; i++){
+            this.push([]);
+            for(var j= 0; j< args[i].length; j++){
+                if(max_n < args[i].length) max_n = args[i].length;
+                this[i][j] = args[i][j];
+            }
+        }
+        for(var i= 0; i< args.length; i++){
+            if(args[i].length === max_n);
+            else {
+                for(var j= 0; j< max_n; j++){
+                    if(!this[i][j]) this[i][j] = 0;
+                }
+            }
+        }
+        this.rows = args.length;
+        this.cols = max_n;
+    }
+}
+ItA.Matrix.prototype = [];
+ItA.Matrix.prototype.constructor = ItA.Matrix;
+
+ItA.Matrix.prototype.clear = function(){
+    for(var n= 0; n< this.rows; n++){
+        for(var m= 0; m< this.cols; m++){
+            this[n][m] = 0;
+        }
+    }
+}
+
+ItA.Matrix.prototype.toString = function (){
+    var str = '';
+    for(var i= 0; i< this.rows; i++){
+        str += '|';
+        for(var j= 0; j< this.cols; j++){
+            var l = 0;
+            var stri = this[i][j].toString();
+            if(stri.length< 4) {
+                l = 4- stri.length;
+                for(var k= 0; k< l; k++){
+                    str += ' ';
+                }
+                str += stri;
+            }else {
+                str += stri;
+            }
+            str += ',';
+        }
+        str = str.substr(0,str.length-1);
+        str += '|\n';
+    }
+    return str;
+}
+
+//算法
 ItA.Sort = (function (){
     //插入排序
     function Insertion(arr,func){
@@ -122,13 +191,13 @@ ItA.FindMaxSubarray = (function(){
                 return C;
             }
         }
-        
+        debugger;
     }
     
     var execute = function(arr, low, high){
         
-        FindMaximumSubarray(arr, low, high);
-        
+        return FindMaximumSubarray(arr, low, high);
+        debugger;
     }
     
     var DirectlyCalculating = function(arr, low, high){
@@ -137,15 +206,18 @@ ItA.FindMaxSubarray = (function(){
         var left_index= 0;
         var right_index= 0;
         for(var i= low; i<= high; i++){
-            var sum = 0;
-            for(var j= i; j< high+ 1; j++){
-                sum += arr[j];
+            for(var j= i; j<= high; j++){
+                var sum = 0;
+                for(var k= i; k<= j; k++){
+                    sum += arr[k];
+                }
+                if(sum > sum_max) {
+                    sum_max = sum;
+                    left_index = i;
+                    right_index = j;
+                }
             }
-            if(sum > sum_max) {
-                sum_max = sum;
-                left_index = i;
-                right_index = j- 1;
-            }
+            
         }
         
         return [left_index, right_index, sum_max];
@@ -153,7 +225,7 @@ ItA.FindMaxSubarray = (function(){
     
     var DivideConquer = function (arr, low, high){
         
-        FindMaximumSubarray(arr, low, high);
+        return FindMaximumSubarray(arr, low, high);
         
     }
     
@@ -168,7 +240,19 @@ ItA.FindMaxSubarray = (function(){
     }
 })();
 
-
+ItA.Matrix.SquareMatrixMultiply = function(A,B) {
+    var n= A.rows;
+    var C = new ItA.Matrix(n, n);
+    for(var i= 0; i< n; i++){
+        for(var j= 0; j< n; j++){
+            C.clear();
+            for(var k= 0; k< n; k++){
+                C[i][j] = C[i][j] + A[i][k]*B[k][j];
+            }
+        }
+    }
+    return C;
+}
 
 
 
