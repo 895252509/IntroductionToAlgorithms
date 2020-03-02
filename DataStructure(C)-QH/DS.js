@@ -1,3 +1,6 @@
+/**
+ * 链表
+ */
 class LNode{
   constructor(d, n){
     this.data = d || null;
@@ -51,7 +54,48 @@ class LinkList extends LNode{
   }
 }
 
+/**
+ * 栈
+ */
+const STACK_INIT_SIZE = 100;
+const STACKINCREMENT = 10;
+class SqStack{
+  constructor(){
+    this.base = [];
+    this.top = 0;
+    this.stacksize = 0;
 
+    // init
+    this.stacksize = STACK_INIT_SIZE;
+    this.base = new Array(STACK_INIT_SIZE);
+    this.top = this.base;
+  }
+
+  destroy(){
+
+  }
+  clear(){
+
+  }
+  empty(){
+
+  }
+  length(){
+
+  }
+  top(){
+
+  }
+  push(){
+
+  }
+  pop(){
+
+  }
+  traverse(){
+
+  }
+}
 
 
 
